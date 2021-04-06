@@ -4,6 +4,10 @@ namespace App\Http\Livewire\Products;
 
 use App\Models\Product;
 use Livewire\Component;
+use App\Exports\ProductsExport;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\Response;
 
 class Datatable extends Component
 {
@@ -14,6 +18,13 @@ class Datatable extends Component
                 'position' => $item['order']
             ]);
         }
+    }
+
+    public function export($extension)
+    {
+        abort_if(!in_array($extension, ['csv', 'xlsx', 'pdf']), Response::HTTP_NOT_FOUND);
+
+        return Excel::download(new ProductsExport, 'products.' . $extension);
     }
 
     public function render()
