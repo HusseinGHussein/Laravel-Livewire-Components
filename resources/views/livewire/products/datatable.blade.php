@@ -1,19 +1,19 @@
 <div>
-    <div class="flex justify-start mt-5 mb-5">
-        <x-jet-button type="button" class="ml-4" wire:click="export('csv')" wire:loading.attr='disabled'>
-            CSV
-        </x-jet-button>
-        <x-jet-button type="button" class="ml-4" wire:click="export('xlsx')" wire:loading.attr='disabled'>
-            XLS
-        </x-jet-button>
-        <x-jet-button type="button" class="ml-4" wire:click="export('pdf')" wire:loading.attr='disabled'>
-            PDF
-        </x-jet-button>
-    </div>
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+                    <div class="flex justify-start mt-5 mb-5">
+                        <x-jet-button type="button" class="ml-4" wire:click="export('csv')" wire:loading.attr='disabled'>
+                            CSV
+                        </x-jet-button>
+                        <x-jet-button type="button" class="ml-4" wire:click="export('xlsx')" wire:loading.attr='disabled'>
+                            XLS
+                        </x-jet-button>
+                        <x-jet-button type="button" class="ml-4" wire:click="export('pdf')" wire:loading.attr='disabled'>
+                            PDF
+                        </x-jet-button>
+                    </div>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
@@ -24,7 +24,7 @@
                                     Price
                                 </th>
                                 <th scope="col" class="relative px-6 py-3">
-                                    <span class="sr-only">Edit</span>
+                                    <span class="sr-only">Actions</span>
                                 </th>
                             </>
                         </thead>
@@ -38,6 +38,10 @@
                                         <div class="text-sm text-gray-900">{{ $product->price }}</div>
                                     </td>
                                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                        @livewire('toggle-button', [
+                                            'model' => $product,
+                                            'field' => 'active'
+                                        ])
                                         <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                     </td>
                                 </tr>

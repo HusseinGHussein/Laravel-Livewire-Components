@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->decimal('price', 10, 2);
             $table->integer('position');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }
